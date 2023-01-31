@@ -6,20 +6,20 @@ List gradientValues = [
     const Color(0xFFa63a41)
   ],
   [ // Breach
-    Colors.deepOrange,
+    const Color.fromRGBO(255, 87, 34, 1),
     const Color(0xFFb14d23)
   ],
   [ // Raze
     const Color(0xFFba9347),
-    Colors.deepOrange
+    const Color.fromRGBO(255, 87, 34, 1)
   ],
   [ // Chamber
     const Color(0xFFac7a43),
     const Color(0xFFde4e78)
   ],
   [ // KAY/O
-    Colors.purple[400],
-    Colors.blue[900]
+    const Color.fromRGBO(171, 71, 188, 1),
+    const Color.fromRGBO(13, 71, 161, 1)
   ],
   [ // Skye
     const Color(0xFF52eab9),
@@ -34,8 +34,8 @@ List gradientValues = [
     const Color(0xFFa3a095)
   ],
   [ // Killjoy
-    Colors.amber,
-    Colors.green[600]
+    Color.fromRGBO(255, 193, 7, 1),
+    Color.fromRGBO(67, 160, 71, 1)
   ],
   [ // Harbor
     // const Color(0xFF3e8274),
@@ -57,8 +57,8 @@ List gradientValues = [
     const Color(0xFF210f63)
   ],
   [ // Brimstone
-    Colors.deepOrange[700],
-    Colors.orange[700]
+    Color.fromRGBO(230, 74, 25, 1),
+    Color.fromRGBO(245, 124, 0, 1)
   ],
   [ // Neon
     
@@ -71,7 +71,7 @@ List gradientValues = [
   ],
   [ // Sage
     const Color(0xFF52eab9),
-    Colors.blue[900]
+    Color.fromRGBO(13, 71, 161, 1)
   ],
   [ // Reyna
     const Color(0xFF281d3c),

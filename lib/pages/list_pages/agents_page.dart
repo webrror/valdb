@@ -87,7 +87,7 @@ class _AgentsState extends State<Agents> {
                             Navigator.push(context, MaterialPageRoute(builder:(context) => AgentDetails(snapshot: snapshot.data!.data[index], index: index,),));
                           },
                           child: AgentsListCard(
-                              snapshot: snapshot.data!.data[index]),
+                              snapshot: snapshot.data!.data[index], index: index,),
                         );
                       },
                     ),

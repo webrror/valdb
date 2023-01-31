@@ -1,19 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:valdb/utils/gradient_values.dart';
 
 import '../utils/dimensions.dart';
 
 class AgentsListCard extends StatelessWidget {
   final dynamic snapshot;
-  const AgentsListCard({
-    Key? key,
-    required this.snapshot,
-  }) : super(key: key);
+  final int index;
+  const AgentsListCard({Key? key, required this.snapshot, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    List<Color> colors = gradientValues[index];
     return Padding(
-      padding: EdgeInsets.only(top: Dimensions.height10, left: Dimensions.width5, right: Dimensions.width5,),
+      padding: EdgeInsets.only(
+        top: Dimensions.height10,
+        left: Dimensions.width5,
+        right: Dimensions.width5,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -23,8 +28,7 @@ class AgentsListCard extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 0,
               blurRadius: 9,
-              offset:
-                  const Offset(0, 0), // changes position of shadow
+              offset: const Offset(0, 0), // changes position of shadow
             ),
           ],
         ),
@@ -36,19 +40,13 @@ class AgentsListCard extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(Dimensions.radius10),
               child: Container(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  gradient: LinearGradient(
-                    begin: FractionalOffset.centerRight,
-                    end: FractionalOffset.centerLeft,
-                    colors: [
-                      Colors.white10,
-                      Color.fromRGBO(253, 69, 86, 1),
-                    ],
-                    stops: [
-                      0.1,
-                      1.0
-                    ])),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    gradient: LinearGradient(
+                        begin: FractionalOffset.centerRight,
+                        end: FractionalOffset.centerLeft,
+                        colors: colors,
+                        stops: const [0.1, 1.0])),
               ),
             ),
             Container(
@@ -56,25 +54,28 @@ class AgentsListCard extends StatelessWidget {
               child: Text(
                 snapshot.displayName.toString().toUpperCase(),
                 style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 20
-                ),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w900,
+                    fontSize: 20),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             Container(
               alignment: Alignment.centerRight,
               child: ClipRRect(
-                borderRadius: BorderRadius.only(topRight: Radius.circular(Dimensions.radius10), bottomRight:Radius.circular(Dimensions.radius10)),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(Dimensions.radius10),
+                    bottomRight: Radius.circular(Dimensions.radius10)),
                 child: Container(
-                  color:  Colors.transparent,
-                  height: double.infinity,
-                  width: Dimensions.width120,
-                  child: Image.network(snapshot.displayIcon, fit: BoxFit.cover,)),
+                    color: Colors.transparent,
+                    height: double.infinity,
+                    width: Dimensions.width120,
+                    child: Image.network(
+                      snapshot.displayIcon,
+                      fit: BoxFit.cover,
+                    )),
               ),
             ),
-
           ],
         ),
       ),
