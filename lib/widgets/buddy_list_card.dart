@@ -12,7 +12,11 @@ class BuddiesListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: Dimensions.height10, left: Dimensions.width5, right: Dimensions.width5,),
+      padding: EdgeInsets.only(
+        top: Dimensions.height10,
+        left: Dimensions.width5,
+        right: Dimensions.width5,
+      ),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -22,8 +26,7 @@ class BuddiesListCard extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 0,
               blurRadius: 9,
-              offset:
-                  const Offset(0, 0), // changes position of shadow
+              offset: const Offset(0, 0), // changes position of shadow
             ),
           ],
         ),
@@ -35,16 +38,25 @@ class BuddiesListCard extends StatelessWidget {
               Text(
                 snapshot.displayName.toString(),
                 style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontSize: MediaQuery.of(context).size.width < 1000 ? 13 : 16
-                ),
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize:
+                        MediaQuery.of(context).size.width < 1000 ? 13 : 16),
                 overflow: TextOverflow.ellipsis,
               ),
-              SizedBox(height: Dimensions.height10,),
+              SizedBox(
+                height: Dimensions.height10,
+              ),
+              // AspectRatio(
+              //   aspectRatio: 9 / 16,
+              //   child: GalleryView(crossAxisCount: 1, imageUrlList: [
+              //     snapshot.displayIcon,
+              //   ]),
+              // ),
               Image.network(
-                snapshot.displayIcon, 
+                snapshot.displayIcon,
                 width: Dimensions.width120,
+                height: Dimensions.height120,
               ),
             ],
           ),

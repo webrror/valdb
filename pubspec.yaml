@@ -44,9 +44,9 @@ dependencies:
   google_fonts: ^6.2.1
   glass_kit: ^4.0.1
   hexcolor: ^3.0.1
-  gallery_view:
-    git:
-      url: https://github.com/webrror/image_gallery.git
+  # gallery_view:
+  #   git:
+  #     url: https://github.com/webrror/image_gallery.git
   provider: ^6.1.2
   cached_network_image: ^3.4.1
 

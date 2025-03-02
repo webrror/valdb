@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:gallery_view/gallery_view.dart';
+// import 'package:gallery_view/gallery_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:valdb/models/agents_model.dart';
 import 'package:valdb/utils/color_util.dart';
@@ -247,28 +247,28 @@ class _AgentDetailsState extends State<AgentDetails> {
                         SizedBox(
                           height: screenWidth * 0.04,
                         ),
-                        Container(
-                          // color: Colors.black12,
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            gradient: LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight,
-                              colors: convertHexToColorList(widget.agent.backgroundGradientColors ?? []),
-                              stops: const [0.15, 1.0],
-                            ),
-                          ),
+                        // Container(
+                        //   // color: Colors.black12,
+                        //   padding: const EdgeInsets.all(10),
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(8),
+                        //     gradient: LinearGradient(
+                        //       begin: Alignment.bottomLeft,
+                        //       end: Alignment.topRight,
+                        //       colors: convertHexToColorList(widget.agent.backgroundGradientColors ?? []),
+                        //       stops: const [0.15, 1.0],
+                        //     ),
+                        //   ),
 
-                          child: GalleryView(
-                            crossAxisCount: 3,
-                            imageUrlList: [
-                              widget.agent.fullPortrait ?? "",
-                              widget.agent.background ?? "",
-                              widget.agent.displayIcon ?? "",
-                            ],
-                          ),
-                        ),
+                        //   child: GalleryView(
+                        //     crossAxisCount: 3,
+                        //     imageUrlList: [
+                        //       widget.agent.fullPortrait ?? "",
+                        //       widget.agent.background ?? "",
+                        //       widget.agent.displayIcon ?? "",
+                        //     ],
+                        //   ),
+                        // ),
                         SizedBox(
                           height: screenWidth * 0.04,
                         ),
