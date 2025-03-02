@@ -1,110 +1,155 @@
 // To parse this JSON data, do
 //
-//     final agent = agentFromJson(jsonString);
+//     final agentDetailModel = agentDetailModelFromJson(jsonString);
 
 import 'dart:convert';
 
-Agent agentFromJson(String str) => Agent.fromJson(json.decode(str));
+AgentDetailModel agentDetailModelFromJson(String str) => AgentDetailModel.fromJson(json.decode(str));
 
-String agentToJson(Agent data) => json.encode(data.toJson());
+String agentDetailModelToJson(AgentDetailModel data) => json.encode(data.toJson());
 
-class Agent {
-    Agent({
-        required this.status,
-        required this.data,
-    });
+class AgentDetailModel {
+  final String? uuid;
+  final String? displayName;
+  final String? description;
+  final String? developerName;
+  final DateTime? releaseDate;
+  final List<String>? characterTags;
+  final String? displayIcon;
+  final String? displayIconSmall;
+  final String? bustPortrait;
+  final String? fullPortrait;
+  final String? fullPortraitV2;
+  final String? killfeedPortrait;
+  final String? background;
+  final List<String>? backgroundGradientColors;
+  final String? assetPath;
+  final bool? isFullPortraitRightFacing;
+  final bool? isPlayableCharacter;
+  final bool? isAvailableForTest;
+  final bool? isBaseContent;
+  final Role? role;
+  final RecruitmentData? recruitmentData;
+  final List<Ability>? abilities;
+  final VoiceLine? voiceLine;
 
-    int status;
-    List<Datum> data;
+  AgentDetailModel({
+    this.uuid,
+    this.displayName,
+    this.description,
+    this.developerName,
+    this.releaseDate,
+    this.characterTags,
+    this.displayIcon,
+    this.displayIconSmall,
+    this.bustPortrait,
+    this.fullPortrait,
+    this.fullPortraitV2,
+    this.killfeedPortrait,
+    this.background,
+    this.backgroundGradientColors,
+    this.assetPath,
+    this.isFullPortraitRightFacing,
+    this.isPlayableCharacter,
+    this.isAvailableForTest,
+    this.isBaseContent,
+    this.role,
+    this.recruitmentData,
+    this.abilities,
+    this.voiceLine,
+  });
 
-    factory Agent.fromJson(Map<String, dynamic> json) => Agent(
-        status: json["status"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+  AgentDetailModel copyWith({
+    String? uuid,
+    String? displayName,
+    String? description,
+    String? developerName,
+    DateTime? releaseDate,
+    List<String>? characterTags,
+    String? displayIcon,
+    String? displayIconSmall,
+    String? bustPortrait,
+    String? fullPortrait,
+    String? fullPortraitV2,
+    String? killfeedPortrait,
+    String? background,
+    List<String>? backgroundGradientColors,
+    String? assetPath,
+    bool? isFullPortraitRightFacing,
+    bool? isPlayableCharacter,
+    bool? isAvailableForTest,
+    bool? isBaseContent,
+    Role? role,
+    RecruitmentData? recruitmentData,
+    List<Ability>? abilities,
+    VoiceLine? voiceLine,
+  }) =>
+      AgentDetailModel(
+        uuid: uuid ?? this.uuid,
+        displayName: displayName ?? this.displayName,
+        description: description ?? this.description,
+        developerName: developerName ?? this.developerName,
+        releaseDate: releaseDate ?? this.releaseDate,
+        characterTags: characterTags ?? this.characterTags,
+        displayIcon: displayIcon ?? this.displayIcon,
+        displayIconSmall: displayIconSmall ?? this.displayIconSmall,
+        bustPortrait: bustPortrait ?? this.bustPortrait,
+        fullPortrait: fullPortrait ?? this.fullPortrait,
+        fullPortraitV2: fullPortraitV2 ?? this.fullPortraitV2,
+        killfeedPortrait: killfeedPortrait ?? this.killfeedPortrait,
+        background: background ?? this.background,
+        backgroundGradientColors: backgroundGradientColors ?? this.backgroundGradientColors,
+        assetPath: assetPath ?? this.assetPath,
+        isFullPortraitRightFacing: isFullPortraitRightFacing ?? this.isFullPortraitRightFacing,
+        isPlayableCharacter: isPlayableCharacter ?? this.isPlayableCharacter,
+        isAvailableForTest: isAvailableForTest ?? this.isAvailableForTest,
+        isBaseContent: isBaseContent ?? this.isBaseContent,
+        role: role ?? this.role,
+        recruitmentData: recruitmentData ?? this.recruitmentData,
+        abilities: abilities ?? this.abilities,
+        voiceLine: voiceLine ?? this.voiceLine,
+      );
+
+  factory AgentDetailModel.fromJson(Map<String, dynamic> json) {
+    AgentDetailModel agentDetailModel = AgentDetailModel(
+      uuid: json["uuid"],
+      displayName: json["displayName"],
+      description: json["description"],
+      developerName: json["developerName"],
+      releaseDate: json["releaseDate"] == null ? null : DateTime.parse(json["releaseDate"]),
+      characterTags: json["characterTags"] == null ? [] : List<String>.from(json["characterTags"]!.map((x) => x)),
+      displayIcon: json["displayIcon"],
+      displayIconSmall: json["displayIconSmall"],
+      bustPortrait: json["bustPortrait"],
+      fullPortrait: json["fullPortrait"],
+      fullPortraitV2: json["fullPortraitV2"],
+      killfeedPortrait: json["killfeedPortrait"],
+      background: json["background"],
+      backgroundGradientColors: json["backgroundGradientColors"] == null ? [] : List<String>.from(json["backgroundGradientColors"]!.map((x) => x)),
+      assetPath: json["assetPath"],
+      isFullPortraitRightFacing: json["isFullPortraitRightFacing"],
+      isPlayableCharacter: json["isPlayableCharacter"],
+      isAvailableForTest: json["isAvailableForTest"],
+      isBaseContent: json["isBaseContent"],
+      role: json["role"] == null ? null : Role.fromJson(json["role"]),
+      recruitmentData: json["recruitmentData"] == null ? null : RecruitmentData.fromJson(json["recruitmentData"]),
+      abilities: json["abilities"] == null ? [] : List<Ability>.from(json["abilities"]!.map((x) => Ability.fromJson(x))),
+      voiceLine: json["voiceLine"] == null ? null : VoiceLine.fromJson(json["voiceLine"]),
     );
 
-    Map<String, dynamic> toJson() => {
-        "status": status,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    };
-}
+    agentDetailModel.backgroundGradientColors?.removeAt(1);
+    agentDetailModel.backgroundGradientColors?.removeAt(2);
 
-class Datum {
-    Datum({
-        required this.uuid,
-        required this.displayName,
-        required this.description,
-        required this.developerName,
-        this.characterTags,
-        required this.displayIcon,
-        required this.displayIconSmall,
-        required this.bustPortrait,
-        required this.fullPortrait,
-        required this.fullPortraitV2,
-        required this.killfeedPortrait,
-        required this.background,
-        required this.backgroundGradientColors,
-        required this.assetPath,
-        required this.isFullPortraitRightFacing,
-        required this.isPlayableCharacter,
-        required this.isAvailableForTest,
-        required this.isBaseContent,
-        required this.role,
-        required this.abilities,
-        required this.voiceLine,
-    });
+    return agentDetailModel;
+  }
 
-    String uuid;
-    String displayName;
-    String description;
-    String developerName;
-    List<String>? characterTags;
-    String displayIcon;
-    String displayIconSmall;
-    String bustPortrait;
-    String fullPortrait;
-    String fullPortraitV2;
-    String killfeedPortrait;
-    String background;
-    List<String> backgroundGradientColors;
-    String assetPath;
-    bool isFullPortraitRightFacing;
-    bool isPlayableCharacter;
-    bool isAvailableForTest;
-    bool isBaseContent;
-    Role role;
-    List<Ability> abilities;
-    VoiceLine voiceLine;
-
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        uuid: json["uuid"],
-        displayName: json["displayName"],
-        description: json["description"],
-        developerName: json["developerName"],
-        characterTags: json["characterTags"] == null ? null : List<String>.from(json["characterTags"].map((x) => x)),
-        displayIcon: json["displayIcon"],
-        displayIconSmall: json["displayIconSmall"],
-        bustPortrait: json["bustPortrait"],
-        fullPortrait: json["fullPortrait"],
-        fullPortraitV2: json["fullPortraitV2"],
-        killfeedPortrait: json["killfeedPortrait"],
-        background: json["background"],
-        backgroundGradientColors: List<String>.from(json["backgroundGradientColors"].map((x) => x)),
-        assetPath: json["assetPath"],
-        isFullPortraitRightFacing: json["isFullPortraitRightFacing"],
-        isPlayableCharacter: json["isPlayableCharacter"],
-        isAvailableForTest: json["isAvailableForTest"],
-        isBaseContent: json["isBaseContent"],
-        role: Role.fromJson(json["role"]),
-        abilities: List<Ability>.from(json["abilities"].map((x) => Ability.fromJson(x))),
-        voiceLine: VoiceLine.fromJson(json["voiceLine"]),
-    );
-
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "uuid": uuid,
         "displayName": displayName,
         "description": description,
         "developerName": developerName,
-        "characterTags": characterTags == null ? null : List<dynamic>.from(characterTags!.map((x) => x)),
+        "releaseDate": releaseDate?.toIso8601String(),
+        "characterTags": characterTags == null ? [] : List<dynamic>.from(characterTags!.map((x) => x)),
         "displayIcon": displayIcon,
         "displayIconSmall": displayIconSmall,
         "bustPortrait": bustPortrait,
@@ -112,155 +157,232 @@ class Datum {
         "fullPortraitV2": fullPortraitV2,
         "killfeedPortrait": killfeedPortrait,
         "background": background,
-        "backgroundGradientColors": List<dynamic>.from(backgroundGradientColors.map((x) => x)),
+        "backgroundGradientColors": backgroundGradientColors == null ? [] : List<dynamic>.from(backgroundGradientColors!.map((x) => x)),
         "assetPath": assetPath,
         "isFullPortraitRightFacing": isFullPortraitRightFacing,
         "isPlayableCharacter": isPlayableCharacter,
         "isAvailableForTest": isAvailableForTest,
         "isBaseContent": isBaseContent,
-        "role": role.toJson(),
-        "abilities": List<dynamic>.from(abilities.map((x) => x.toJson())),
-        "voiceLine": voiceLine.toJson(),
-    };
+        "role": role?.toJson(),
+        "recruitmentData": recruitmentData?.toJson(),
+        "abilities": abilities == null ? [] : List<dynamic>.from(abilities!.map((x) => x.toJson())),
+        "voiceLine": voiceLine?.toJson(),
+      };
 }
 
 class Ability {
-    Ability({
-        required this.slot,
-        required this.displayName,
-        required this.description,
-        this.displayIcon,
-    });
+  final String? slot;
+  final String? displayName;
+  final String? description;
+  final String? displayIcon;
 
-    Slot slot;
-    String displayName;
-    String description;
-    String? displayIcon;
+  Ability({
+    this.slot,
+    this.displayName,
+    this.description,
+    this.displayIcon,
+  });
 
-    factory Ability.fromJson(Map<String, dynamic> json) => Ability(
-        slot: slotValues.map[json["slot"]]!,
+  Ability copyWith({
+    String? slot,
+    String? displayName,
+    String? description,
+    String? displayIcon,
+  }) =>
+      Ability(
+        slot: slot ?? this.slot,
+        displayName: displayName ?? this.displayName,
+        description: description ?? this.description,
+        displayIcon: displayIcon ?? this.displayIcon,
+      );
+
+  factory Ability.fromJson(Map<String, dynamic> json) => Ability(
+        slot: json["slot"],
         displayName: json["displayName"],
         description: json["description"],
-        displayIcon: json["displayIcon"] == null ? null : json["displayIcon"],
-    );
+        displayIcon: json["displayIcon"],
+      );
 
-    Map<String, dynamic> toJson() => {
-        "slot": slotValues.reverse[slot],
+  Map<String, dynamic> toJson() => {
+        "slot": slot,
         "displayName": displayName,
         "description": description,
-        "displayIcon": displayIcon == null ? null : displayIcon,
-    };
+        "displayIcon": displayIcon,
+      };
 }
 
-enum Slot { ABILITY1, ABILITY2, GRENADE, ULTIMATE, PASSIVE }
+class RecruitmentData {
+  final String? counterId;
+  final String? milestoneId;
+  final int? milestoneThreshold;
+  final bool? useLevelVpCostOverride;
+  final int? levelVpCostOverride;
+  final DateTime? startDate;
+  final DateTime? endDate;
 
-final slotValues = EnumValues({
-    "Ability1": Slot.ABILITY1,
-    "Ability2": Slot.ABILITY2,
-    "Grenade": Slot.GRENADE,
-    "Passive": Slot.PASSIVE,
-    "Ultimate": Slot.ULTIMATE
-});
+  RecruitmentData({
+    this.counterId,
+    this.milestoneId,
+    this.milestoneThreshold,
+    this.useLevelVpCostOverride,
+    this.levelVpCostOverride,
+    this.startDate,
+    this.endDate,
+  });
+
+  RecruitmentData copyWith({
+    String? counterId,
+    String? milestoneId,
+    int? milestoneThreshold,
+    bool? useLevelVpCostOverride,
+    int? levelVpCostOverride,
+    DateTime? startDate,
+    DateTime? endDate,
+  }) =>
+      RecruitmentData(
+        counterId: counterId ?? this.counterId,
+        milestoneId: milestoneId ?? this.milestoneId,
+        milestoneThreshold: milestoneThreshold ?? this.milestoneThreshold,
+        useLevelVpCostOverride: useLevelVpCostOverride ?? this.useLevelVpCostOverride,
+        levelVpCostOverride: levelVpCostOverride ?? this.levelVpCostOverride,
+        startDate: startDate ?? this.startDate,
+        endDate: endDate ?? this.endDate,
+      );
+
+  factory RecruitmentData.fromJson(Map<String, dynamic> json) => RecruitmentData(
+        counterId: json["counterId"],
+        milestoneId: json["milestoneId"],
+        milestoneThreshold: json["milestoneThreshold"],
+        useLevelVpCostOverride: json["useLevelVpCostOverride"],
+        levelVpCostOverride: json["levelVpCostOverride"],
+        startDate: json["startDate"] == null ? null : DateTime.parse(json["startDate"]),
+        endDate: json["endDate"] == null ? null : DateTime.parse(json["endDate"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "counterId": counterId,
+        "milestoneId": milestoneId,
+        "milestoneThreshold": milestoneThreshold,
+        "useLevelVpCostOverride": useLevelVpCostOverride,
+        "levelVpCostOverride": levelVpCostOverride,
+        "startDate": startDate?.toIso8601String(),
+        "endDate": endDate?.toIso8601String(),
+      };
+}
 
 class Role {
-    Role({
-        required this.uuid,
-        required this.displayName,
-        required this.description,
-        required this.displayIcon,
-        required this.assetPath,
-    });
+  final String? uuid;
+  final String? displayName;
+  final String? description;
+  final String? displayIcon;
+  final String? assetPath;
 
-    String uuid;
-    DisplayName displayName;
-    String description;
-    String displayIcon;
-    String assetPath;
+  Role({
+    this.uuid,
+    this.displayName,
+    this.description,
+    this.displayIcon,
+    this.assetPath,
+  });
 
-    factory Role.fromJson(Map<String, dynamic> json) => Role(
+  Role copyWith({
+    String? uuid,
+    String? displayName,
+    String? description,
+    String? displayIcon,
+    String? assetPath,
+  }) =>
+      Role(
+        uuid: uuid ?? this.uuid,
+        displayName: displayName ?? this.displayName,
+        description: description ?? this.description,
+        displayIcon: displayIcon ?? this.displayIcon,
+        assetPath: assetPath ?? this.assetPath,
+      );
+
+  factory Role.fromJson(Map<String, dynamic> json) => Role(
         uuid: json["uuid"],
-        displayName: displayNameValues.map[json["displayName"]]!,
+        displayName: json["displayName"],
         description: json["description"],
         displayIcon: json["displayIcon"],
         assetPath: json["assetPath"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "uuid": uuid,
-        "displayName": displayNameValues.reverse[displayName],
+        "displayName": displayName,
         "description": description,
         "displayIcon": displayIcon,
         "assetPath": assetPath,
-    };
+      };
 }
 
-enum DisplayName { INITIATOR, DUELIST, SENTINEL, CONTROLLER }
-
-final displayNameValues = EnumValues({
-    "Controller": DisplayName.CONTROLLER,
-    "Duelist": DisplayName.DUELIST,
-    "Initiator": DisplayName.INITIATOR,
-    "Sentinel": DisplayName.SENTINEL
-});
-
 class VoiceLine {
-    VoiceLine({
-        required this.minDuration,
-        required this.maxDuration,
-        required this.mediaList,
-    });
+  final double? minDuration;
+  final int? maxDuration;
+  final List<MediaList>? mediaList;
 
-    double minDuration;
-    double maxDuration;
-    List<MediaList> mediaList;
+  VoiceLine({
+    this.minDuration,
+    this.maxDuration,
+    this.mediaList,
+  });
 
-    factory VoiceLine.fromJson(Map<String, dynamic> json) => VoiceLine(
-        minDuration: json["minDuration"].toDouble(),
-        maxDuration: json["maxDuration"].toDouble(),
-        mediaList: List<MediaList>.from(json["mediaList"].map((x) => MediaList.fromJson(x))),
-    );
+  VoiceLine copyWith({
+    double? minDuration,
+    int? maxDuration,
+    List<MediaList>? mediaList,
+  }) =>
+      VoiceLine(
+        minDuration: minDuration ?? this.minDuration,
+        maxDuration: maxDuration ?? this.maxDuration,
+        mediaList: mediaList ?? this.mediaList,
+      );
 
-    Map<String, dynamic> toJson() => {
+  factory VoiceLine.fromJson(Map<String, dynamic> json) => VoiceLine(
+        minDuration: json["minDuration"]?.toDouble(),
+        maxDuration: json["maxDuration"],
+        mediaList: json["mediaList"] == null ? [] : List<MediaList>.from(json["mediaList"]!.map((x) => MediaList.fromJson(x))),
+      );
+
+  Map<String, dynamic> toJson() => {
         "minDuration": minDuration,
         "maxDuration": maxDuration,
-        "mediaList": List<dynamic>.from(mediaList.map((x) => x.toJson())),
-    };
+        "mediaList": mediaList == null ? [] : List<dynamic>.from(mediaList!.map((x) => x.toJson())),
+      };
 }
 
 class MediaList {
-    MediaList({
-        required this.id,
-        required this.wwise,
-        required this.wave,
-    });
+  final int? id;
+  final String? wwise;
+  final String? wave;
 
-    int id;
-    String wwise;
-    String wave;
+  MediaList({
+    this.id,
+    this.wwise,
+    this.wave,
+  });
 
-    factory MediaList.fromJson(Map<String, dynamic> json) => MediaList(
+  MediaList copyWith({
+    int? id,
+    String? wwise,
+    String? wave,
+  }) =>
+      MediaList(
+        id: id ?? this.id,
+        wwise: wwise ?? this.wwise,
+        wave: wave ?? this.wave,
+      );
+
+  factory MediaList.fromJson(Map<String, dynamic> json) => MediaList(
         id: json["id"],
         wwise: json["wwise"],
         wave: json["wave"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "id": id,
         "wwise": wwise,
         "wave": wave,
-    };
-}
-
-class EnumValues<T> {
-    Map<String, T> map;
-    Map<T, String>? reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-        if (reverseMap == null) {
-            reverseMap = map.map((k, v) => new MapEntry(v, k));
-        }
-        return reverseMap!;
-    }
+      };
 }
